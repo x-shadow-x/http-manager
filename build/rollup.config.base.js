@@ -1,5 +1,7 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
+import builtins from 'rollup-plugin-node-builtins';
+import globals from 'rollup-plugin-node-globals';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import replace from 'rollup-plugin-replace';
@@ -15,7 +17,10 @@ export default {
 		}),
 		commonjs(),
 		json(),
+		builtins(),
+		globals(),
 		babel({
+			runtimeHelpers: true,
 			exclude: 'node_modules/**' // 排除node_module下的所有文件
 		}),
 		replace({
